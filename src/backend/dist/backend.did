@@ -1,0 +1,340 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UngroundedSentence = 
+ record {
+   sectionId: Id;
+   sentence: text;
+ };
+type Timestamp = int;
+type Summary = 
+ record {
+   content: text;
+   coversCount: nat;
+   createdAtNs: int;
+ };
+type StoredMessage = 
+ record {
+   content: text;
+   createdAtNs: int;
+   role: variant {
+           assistant;
+           user;
+         };
+ };
+type RetrievalScope = 
+ variant {
+   library;
+   project: Id;
+ };
+type RetrievalResult = 
+ variant {
+   found: record {passages: vec CitedPassage;};
+   notFoundInLibrary;
+ };
+type RetrievalRequest = 
+ record {
+   question: text;
+   scope: RetrievalScope;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ProjectInput = 
+ record {
+   caption: text;
+   name: text;
+ };
+type Project = 
+ record {
+   caption: text;
+   createdAt: Timestamp;
+   fileCount: nat;
+   id: Id;
+   indexingStatus: IndexingStatus;
+   lastActivityAt: Timestamp;
+   name: text;
+ };
+type PassagePage = 
+ record {
+   passages: vec Passage;
+   total: nat;
+ };
+type Passage = 
+ record {
+   fileId: Id;
+   id: Id;
+   page: PageNumber;
+   paragraph: ParagraphNumber;
+   "text": text;
+ };
+type ParagraphNumber = nat;
+type PageNumber = nat;
+type MessagePage = 
+ record {
+   messages: vec StoredMessage;
+   summary: opt Summary;
+   total: nat;
+ };
+type KeyValidation = 
+ variant {
+   invalid: record {reason: text;};
+   valid;
+ };
+type KeyStatus = 
+ record {
+   configured: bool;
+   last4: opt text;
+ };
+type IndexingStatus = 
+ variant {
+   failed: record {reason: text;};
+   indexed;
+   indexing;
+   pending;
+ };
+type Id = nat;
+type GroundingResult = record {ungrounded: vec UngroundedSentence;};
+type GroundedAnswer = 
+ variant {
+   answered: record {
+               answer: text;
+               passages: vec CitedPassage;
+             };
+   notFoundInLibrary;
+ };
+type ExternalBlob = blob;
+type ExportedDocument = 
+ record {
+   bytes: blob;
+   filename: text;
+ };
+type ExportOptions = 
+ record {
+   caption: text;
+   disclaimer: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DraftVersion = 
+ record {
+   savedAt: Timestamp;
+   sections: vec DraftSection;
+   version: nat;
+ };
+type DraftType = 
+ variant {
+   memorandum;
+   motion;
+   noticeOfExhaustion;
+   petition;
+   reply;
+ };
+type DraftSection = 
+ record {
+   body: text;
+   heading: text;
+   id: Id;
+ };
+type DraftInput = 
+ record {
+   draftType: DraftType;
+   projectId: Id;
+   title: text;
+ };
+type DraftContent = 
+ record {
+   sections: vec DraftSection;
+   title: text;
+ };
+type Draft = 
+ record {
+   autosavedAt: Timestamp;
+   createdAt: Timestamp;
+   draftType: DraftType;
+   id: Id;
+   projectId: Id;
+   sections: vec DraftSection;
+   title: text;
+   versions: vec DraftVersion;
+ };
+type Credentials = 
+ record {
+   apiKey: text;
+   baseUrl: text;
+   expiresAt: text;
+ };
+type ConversationSummary = 
+ record {
+   id: nat;
+   messageCount: nat;
+   title: text;
+   updatedAtNs: int;
+ };
+type CitedPassage = 
+ record {
+   filename: text;
+   passage: Passage;
+ };
+type CitationStatus = 
+ variant {
+   malformed;
+   unverified;
+   verifiedInLibrary: CitedPassage;
+ };
+type CitationLocation = 
+ record {
+   offset: nat;
+   sectionId: Id;
+ };
+type CitationCheckResult = record {citations: vec CitationCheck;};
+type CitationCheck = 
+ record {
+   location: CitationLocation;
+   rawText: text;
+   status: CitationStatus;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type CaseFileInput = 
+ record {
+   "blob": ExternalBlob;
+   extractedText: opt text;
+   filename: text;
+   mimeType: text;
+   pageCount: nat;
+   projectId: Id;
+   sizeBytes: nat;
+ };
+type CaseFile = 
+ record {
+   "blob": ExternalBlob;
+   extractedText: opt text;
+   filename: text;
+   id: Id;
+   indexingStatus: IndexingStatus;
+   mimeType: text;
+   pageCount: nat;
+   projectId: Id;
+   sizeBytes: nat;
+   uploadedAt: Timestamp;
+   version: nat;
+ };
+type Attestation = 
+ record {
+   confirmed: bool;
+   confirmedAt: opt Timestamp;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  answerFromLibrary: (request: RetrievalRequest) -> (GroundedAnswer);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  autosaveDraft: (id: Id, content: DraftContent) -> (Draft);
+  checkDraftCitations: (draftId: Id) -> (CitationCheckResult);
+  checkDraftGrounding: (draftId: Id) -> (GroundingResult);
+  confirmAttestation: () -> (Attestation);
+  createDraft: (input: DraftInput) -> (Draft);
+  createProject: (input: ProjectInput) -> (Project);
+  deleteCaseFile: (fileId: Id) -> ();
+  deleteConversation: (id: nat) -> ();
+  deleteDraft: (id: Id) -> ();
+  deleteProject: (id: Id) -> ();
+  execute: (qJson: text) -> (Result) query;
+  exportDraftDocx: (draftId: Id, options: ExportOptions) ->
+   (ExportedDocument);
+  getApiDoc: () -> (text) query;
+  getAttestation: () -> (Attestation) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getConversationPage: (id: nat, start: nat) -> (MessagePage) query;
+  getDraft: (id: Id) -> (Draft) query;
+  getFilePassages: (fileId: Id, start: nat) -> (PassagePage) query;
+  getInferenceCredentials: () -> (Credentials);
+  getModelKeyStatus: () -> (KeyStatus) query;
+  isCallerAdmin: () -> (bool) query;
+  isInferenceConfigured: () -> (bool);
+  listCaseFiles: (projectId: Id) -> (vec CaseFile) query;
+  listConversations: () -> (vec ConversationSummary) query;
+  listDrafts: (projectId: Id) -> (vec Draft) query;
+  listProjects: () -> (vec Project) query;
+  probeEphemeralMint: () -> (record {
+                               expiresAt: text;
+                               last4: text;
+                             });
+  recordExchange: (conversationId: opt nat, userContent: text,
+   assistantContent: text) -> (nat);
+  registerCaseFile: (input: CaseFileInput) -> (CaseFile);
+  removeModelKey: () -> ();
+  renameProject: (id: Id, input: ProjectInput) -> (Project);
+  restoreDraftVersion: (id: Id, version: nat) -> (Draft);
+  retrievePassages: (request: RetrievalRequest) -> (RetrievalResult);
+  retryFileIndexing: (fileId: Id) -> (CaseFile);
+  saveModelKey: (key: text) -> (KeyValidation);
+  schema: () -> (text) query;
+  setConversationSummary: (id: nat, coversCount: nat, content: text) -> ();
+}

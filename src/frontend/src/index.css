@@ -1,0 +1,406 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Docket — warm parchment legal workbench. Fraunces / General Sans /  */
+/* JetBrains Mono. Light is primary (long-form reading comfort).       */
+/* ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 200 700;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 800;
+}
+
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "General Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Light (primary): warm parchment, oxblood primary, brass accent. */
+  --background: 0.968 0.011 84;
+  --foreground: 0.205 0.018 45;
+  --card: 0.988 0.007 84;
+  --card-foreground: 0.205 0.018 45;
+  --popover: 0.995 0.005 84;
+  --popover-foreground: 0.205 0.018 45;
+  --primary: 0.375 0.115 15;
+  --primary-foreground: 0.975 0.012 84;
+  --secondary: 0.935 0.014 80;
+  --secondary-foreground: 0.285 0.022 45;
+  --muted: 0.932 0.013 80;
+  --muted-foreground: 0.495 0.02 50;
+  --accent: 0.62 0.1 72;
+  --accent-foreground: 0.205 0.018 45;
+  --destructive: 0.5 0.17 24;
+  --destructive-foreground: 0.975 0.012 24;
+  --success: 0.52 0.09 150;
+  --success-foreground: 0.975 0.012 150;
+  --warning: 0.66 0.12 72;
+  --warning-foreground: 0.22 0.02 72;
+  --border: 0.895 0.014 78;
+  --input: 0.885 0.014 78;
+  --ring: 0.375 0.115 15;
+
+  --chart-1: 0.375 0.115 15;
+  --chart-2: 0.62 0.1 72;
+  --chart-3: 0.52 0.09 150;
+  --chart-4: 0.495 0.02 50;
+  --chart-5: 0.66 0.12 72;
+
+  --sidebar: 0.945 0.013 82;
+  --sidebar-foreground: 0.255 0.02 45;
+  --sidebar-primary: 0.375 0.115 15;
+  --sidebar-primary-foreground: 0.975 0.012 84;
+  --sidebar-accent: 0.905 0.016 78;
+  --sidebar-accent-foreground: 0.255 0.02 45;
+  --sidebar-border: 0.885 0.014 78;
+  --sidebar-ring: 0.375 0.115 15;
+
+  --radius: 0.5rem;
+
+  --gradient-primary: linear-gradient(
+    180deg,
+    oklch(0.405 0.115 15),
+    oklch(0.345 0.11 12)
+  );
+  --gradient-subtle: linear-gradient(
+    180deg,
+    oklch(0.985 0.007 84),
+    oklch(0.955 0.012 82)
+  );
+  --transition-smooth: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  /* Dark: warm charcoal ink, brighter oxblood, brass accent. */
+  --background: 0.175 0.012 50;
+  --foreground: 0.915 0.012 82;
+  --card: 0.215 0.014 50;
+  --card-foreground: 0.915 0.012 82;
+  --popover: 0.215 0.014 50;
+  --popover-foreground: 0.915 0.012 82;
+  --primary: 0.66 0.13 18;
+  --primary-foreground: 0.17 0.012 18;
+  --secondary: 0.26 0.016 50;
+  --secondary-foreground: 0.86 0.012 82;
+  --muted: 0.26 0.016 50;
+  --muted-foreground: 0.62 0.014 60;
+  --accent: 0.75 0.11 78;
+  --accent-foreground: 0.17 0.012 78;
+  --destructive: 0.6 0.17 24;
+  --destructive-foreground: 0.95 0.012 24;
+  --success: 0.68 0.1 150;
+  --success-foreground: 0.17 0.012 150;
+  --warning: 0.76 0.12 76;
+  --warning-foreground: 0.17 0.012 76;
+  --border: 0.3 0.016 50;
+  --input: 0.32 0.016 50;
+  --ring: 0.66 0.13 18;
+
+  --chart-1: 0.66 0.13 18;
+  --chart-2: 0.75 0.11 78;
+  --chart-3: 0.68 0.1 150;
+  --chart-4: 0.62 0.014 60;
+  --chart-5: 0.76 0.12 76;
+
+  --sidebar: 0.2 0.013 50;
+  --sidebar-foreground: 0.86 0.012 82;
+  --sidebar-primary: 0.66 0.13 18;
+  --sidebar-primary-foreground: 0.17 0.012 18;
+  --sidebar-accent: 0.26 0.016 50;
+  --sidebar-accent-foreground: 0.88 0.012 82;
+  --sidebar-border: 0.3 0.016 50;
+  --sidebar-ring: 0.66 0.13 18;
+
+  --gradient-primary: linear-gradient(
+    180deg,
+    oklch(0.69 0.13 18),
+    oklch(0.62 0.13 15)
+  );
+  --gradient-subtle: linear-gradient(
+    180deg,
+    oklch(0.235 0.014 50),
+    oklch(0.2 0.013 50)
+  );
+}
+
+@theme {
+  --color-background: oklch(var(--background));
+  --color-foreground: oklch(var(--foreground));
+  --color-card: oklch(var(--card));
+  --color-card-foreground: oklch(var(--card-foreground));
+  --color-popover: oklch(var(--popover));
+  --color-popover-foreground: oklch(var(--popover-foreground));
+  --color-primary: oklch(var(--primary));
+  --color-primary-foreground: oklch(var(--primary-foreground));
+  --color-secondary: oklch(var(--secondary));
+  --color-secondary-foreground: oklch(var(--secondary-foreground));
+  --color-muted: oklch(var(--muted));
+  --color-muted-foreground: oklch(var(--muted-foreground));
+  --color-accent: oklch(var(--accent));
+  --color-accent-foreground: oklch(var(--accent-foreground));
+  --color-destructive: oklch(var(--destructive));
+  --color-destructive-foreground: oklch(var(--destructive-foreground));
+  --color-success: oklch(var(--success));
+  --color-success-foreground: oklch(var(--success-foreground));
+  --color-warning: oklch(var(--warning));
+  --color-warning-foreground: oklch(var(--warning-foreground));
+  --color-border: oklch(var(--border));
+  --color-input: oklch(var(--input));
+  --color-ring: oklch(var(--ring));
+
+  --color-chart-1: oklch(var(--chart-1));
+  --color-chart-2: oklch(var(--chart-2));
+  --color-chart-3: oklch(var(--chart-3));
+  --color-chart-4: oklch(var(--chart-4));
+  --color-chart-5: oklch(var(--chart-5));
+
+  --color-sidebar: oklch(var(--sidebar));
+  --color-sidebar-foreground: oklch(var(--sidebar-foreground));
+  --color-sidebar-primary: oklch(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: oklch(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: oklch(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: oklch(var(--sidebar-accent-foreground));
+  --color-sidebar-border: oklch(var(--sidebar-border));
+  --color-sidebar-ring: oklch(var(--sidebar-ring));
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    border-color: oklch(var(--border));
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: -0.008em;
+    background: oklch(var(--background));
+    color: oklch(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  /* Citation locator chip: file · page · paragraph in mono. */
+  .citation-locator {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    font-feature-settings: "tnum" 1;
+  }
+  /* Long-form reading column for statutes, records, draft body. */
+  .prose-legal {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 68ch;
+  }
+  .prose-legal p {
+    margin: 0.75rem 0;
+  }
+  .prose-legal h1,
+  .prose-legal h2,
+  .prose-legal h3 {
+    font-family: var(--font-display);
+    margin: 1.5rem 0 0.5rem;
+  }
+  /* Paper grain: faint texture that keeps parchment from reading flat. */
+  .paper-grain {
+    background-image: radial-gradient(
+      oklch(var(--foreground) / 0.025) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 4px 4px;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(var(--border)) transparent;
+  }
+}
+
+/* Markdown rendering for assistant bubbles and retrieved passages. */
+.markdown-body {
+  color: oklch(var(--foreground) / 0.88);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+.markdown-body > *:last-child {
+  margin-bottom: 0;
+}
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body pre,
+.markdown-body blockquote,
+.markdown-body table {
+  margin: 0.5rem 0;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  margin: 0.9rem 0 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: oklch(var(--foreground));
+}
+.markdown-body h1 {
+  font-size: 1.3rem;
+}
+.markdown-body h2 {
+  font-size: 1.15rem;
+}
+.markdown-body h3,
+.markdown-body h4 {
+  font-size: 1rem;
+}
+.markdown-body ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.markdown-body ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.markdown-body li {
+  margin: 0.125rem 0;
+}
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin: 0.125rem 0;
+}
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  background: oklch(var(--muted));
+  border: 1px solid oklch(var(--border));
+  border-radius: 0.25rem;
+  padding: 0.0625rem 0.3rem;
+}
+.markdown-body pre {
+  background: oklch(var(--muted));
+  border: 1px solid oklch(var(--border));
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  overflow-x: auto;
+}
+.markdown-body pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+.markdown-body blockquote {
+  border-left: 3px solid oklch(var(--accent));
+  padding-left: 0.75rem;
+  color: oklch(var(--muted-foreground));
+  font-style: italic;
+}
+.markdown-body a {
+  color: oklch(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.markdown-body a:hover {
+  color: oklch(var(--primary) / 0.8);
+}
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid oklch(var(--border));
+  margin: 0.75rem 0;
+}
+.markdown-body table {
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid oklch(var(--border));
+  padding: 0.25rem 0.6rem;
+  text-align: left;
+}
+.markdown-body th {
+  background: oklch(var(--muted));
+  font-weight: 600;
+}
+.markdown-body strong {
+  color: oklch(var(--foreground));
+  font-weight: 600;
+}
+
+/* Selection: brass wash, the accent's sanctioned highlight use. */
+::selection {
+  background: oklch(var(--accent) / 0.35);
+  color: oklch(var(--foreground));
+}
+
+/* Respect the user's reduced-motion preference: no decorative motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,286 @@
+// Version: 4.0.0
+type AccessControlState__140300680 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__175655829<Principal, UserRole__44914475>
+  };
+type AccessControlState__885662234 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__175655829<Principal, UserRole__84572479>
+  };
+type Attestation__343031362 = {confirmed : Bool; confirmedAt : ?Int};
+type Attestation__560814043 =
+  {confirmed : Bool; confirmedAt : ?Timestamp__301639476};
+type CaseFile__494136575 =
+  {
+    blob : ExternalBlob__220559234;
+    extractedText : ?Text;
+    filename : Text;
+    id : Id__389469852;
+    indexingStatus : IndexingStatus__672225518;
+    mimeType : Text;
+    pageCount : Nat;
+    projectId : Id__389469852;
+    sizeBytes : Nat;
+    uploadedAt : Timestamp__301639476;
+    version : Nat
+  };
+type CaseFile__862925967 =
+  {
+    blob : Blob;
+    extractedText : ?Text;
+    filename : Text;
+    id : Nat;
+    indexingStatus : IndexingStatus__346770241;
+    mimeType : Text;
+    pageCount : Nat;
+    projectId : Nat;
+    sizeBytes : Nat;
+    uploadedAt : Int;
+    version : Nat
+  };
+type Conversation__1007948247 =
+  {
+    createdAtNs : Int;
+    id : Nat;
+    messages : List__837846721<StoredMessage__715122215>;
+    var summary : ?Summary__42866831;
+    var title : Text;
+    var updatedAtNs : Int
+  };
+type Conversation__129870866 =
+  {
+    createdAtNs : Int;
+    id : Nat;
+    messages : List__837846721<StoredMessage__556654917>;
+    var summary : ?Summary__430155052;
+    var title : Text;
+    var updatedAtNs : Int
+  };
+type Conversation__476383100 =
+  {
+    createdAtNs : Int;
+    id : Nat;
+    messages : List__837846721<StoredMessage__638033679>;
+    var summary : ?Summary__254508554;
+    var title : Text;
+    var updatedAtNs : Int
+  };
+type Data__1061330525<K, V> =
+  {var count : Nat__565224867; kvs : [var ?(K, V)]};
+type DraftSection__389893833 = {body : Text; heading : Text; id : Nat};
+type DraftSection__4488657 =
+  {body : Text; heading : Text; id : Id__389469852};
+type DraftType__331627971 =
+  {#memorandum; #motion; #noticeOfExhaustion; #petition; #reply};
+type DraftType__365774686 =
+  {#memorandum; #motion; #noticeOfExhaustion; #petition; #reply};
+type DraftVersion__31018696 =
+  {savedAt : Int; sections : [DraftSection__389893833]; version : Nat};
+type DraftVersion__743637690 =
+  {
+    savedAt : Timestamp__301639476;
+    sections : [DraftSection__4488657];
+    version : Nat
+  };
+type Draft__139483598 =
+  {
+    autosavedAt : Timestamp__301639476;
+    createdAt : Timestamp__301639476;
+    draftType : DraftType__365774686;
+    id : Id__389469852;
+    projectId : Id__389469852;
+    sections : [DraftSection__4488657];
+    title : Text;
+    versions : [DraftVersion__743637690]
+  };
+type Draft__708766710 =
+  {
+    autosavedAt : Int;
+    createdAt : Int;
+    draftType : DraftType__331627971;
+    id : Nat;
+    projectId : Nat;
+    sections : [DraftSection__389893833];
+    title : Text;
+    versions : [DraftVersion__31018696]
+  };
+type ExternalBlob__220559234 = Blob;
+type Id__389469852 = Nat;
+type IndexingStatus__346770241 =
+  {#failed : {reason : Text}; #indexed; #indexing; #pending};
+type IndexingStatus__672225518 =
+  {#failed : {reason : Text}; #indexed; #indexing; #pending};
+type Internal__1060388275<K, V> =
+  {children : [var ?Node__1010487028<K, V>]; data : Data__1061330525<K, V>};
+type Leaf__8515789<K, V> = {data : Data__1061330525<K, V>};
+type List__837846721<T> = List__931548990<T>;
+type List__931548990<T> =
+  {
+    var blockIndex : Nat__565224867;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__565224867
+  };
+type Map__175655829<K, V> = Map__975833162<K, V>;
+type Map__925935234<K, V> =
+  {var root : Node__1010487028<K, V>; var size : Nat__565224867};
+type Map__975833162<K, V> = Map__925935234<K, V>;
+type Nat__565224867 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__509629864 =
+  {
+    accessControlState : AccessControlState__140300680;
+    conversations : Map__175655829<Principal, UserChats__695581777>
+  };
+type NewActor__947486200 =
+  {
+    accessControlState : AccessControlState__885662234;
+    attestations : Map__175655829<Principal, Attestation__343031362>;
+    caseFiles : Map__175655829<Principal, UserFiles__931255938>;
+    conversations : Map__175655829<Principal, UserChats__273222193>;
+    drafts : Map__175655829<Principal, UserDrafts__547055246>;
+    modelKeys : Map__175655829<Principal, UserKeys__249048377>;
+    passages : Map__175655829<Principal, UserPassages__1072550310>;
+    projects : Map__175655829<Principal, UserProjects__780343034>
+  };
+type Node__1010487028<K, V> =
+  {#internal : Internal__1060388275<K, V>; #leaf : Leaf__8515789<K, V>};
+type OldActor__426030763 = {};
+type OldActor__435162136 =
+  {
+    accessControlState : AccessControlState__885662234;
+    conversations : Map__175655829<Principal, UserChats__273222193>
+  };
+type PageNumber__49676938 = Nat;
+type ParagraphNumber__925485959 = Nat;
+type Passage__617949373 =
+  {
+    fileId : Id__389469852;
+    id : Id__389469852;
+    page : PageNumber__49676938;
+    paragraph : ParagraphNumber__925485959;
+    text : Text
+  };
+type Passage__871246563 =
+  {fileId : Nat; id : Nat; page : Nat; paragraph : Nat; text : Text};
+type Project__614212307 =
+  {
+    caption : Text;
+    createdAt : Timestamp__301639476;
+    fileCount : Nat;
+    id : Id__389469852;
+    indexingStatus : IndexingStatus__672225518;
+    lastActivityAt : Timestamp__301639476;
+    name : Text
+  };
+type Project__843856319 =
+  {
+    caption : Text;
+    createdAt : Int;
+    fileCount : Nat;
+    id : Nat;
+    indexingStatus : IndexingStatus__346770241;
+    lastActivityAt : Int;
+    name : Text
+  };
+type StoredMessage__556654917 =
+  {content : Text; createdAtNs : Int; role : {#assistant; #user}};
+type StoredMessage__638033679 =
+  {content : Text; createdAtNs : Int; role : {#assistant; #user}};
+type StoredMessage__715122215 =
+  {content : Text; createdAtNs : Int; role : {#assistant; #user}};
+type Summary__254508554 =
+  {content : Text; coversCount : Nat; createdAtNs : Int};
+type Summary__42866831 =
+  {content : Text; coversCount : Nat; createdAtNs : Int};
+type Summary__430155052 =
+  {content : Text; coversCount : Nat; createdAtNs : Int};
+type Timestamp__301639476 = Int;
+type UserChats__273222193 =
+  {chats : Map__175655829<Nat, Conversation__1007948247>; var nextId : Nat};
+type UserChats__695581777 =
+  {chats : Map__175655829<Nat, Conversation__476383100>; var nextId : Nat};
+type UserChats__746332571 =
+  {chats : Map__175655829<Nat, Conversation__129870866>; var nextId : Nat};
+type UserDrafts__523179498 =
+  {
+    drafts : Map__175655829<Id__389469852, Draft__139483598>;
+    var nextId : Id__389469852
+  };
+type UserDrafts__547055246 =
+  {drafts : Map__175655829<Nat, Draft__708766710>; var nextId : Nat};
+type UserFiles__288248880 = UserFiles__664209146;
+type UserFiles__664209146 =
+  {
+    files : Map__175655829<Id__389469852, CaseFile__494136575>;
+    var nextId : Nat
+  };
+type UserFiles__931255938 =
+  {files : Map__175655829<Nat, CaseFile__862925967>; var nextId : Nat};
+type UserKeys__16407388 = {var key : ?Text};
+type UserKeys__249048377 = {var key : ?Text};
+type UserPassages__1072550310 =
+  {var nextId : Nat; passages : Map__175655829<Nat, Passage__871246563>};
+type UserPassages__253300540 =
+  {
+    var nextId : Nat;
+    passages : Map__175655829<Id__389469852, Passage__617949373>
+  };
+type UserPassages__521185699 = UserPassages__253300540;
+type UserProjects__1017733963 =
+  {
+    var nextId : Id__389469852;
+    projects : Map__175655829<Id__389469852, Project__614212307>
+  };
+type UserProjects__780343034 =
+  {var nextId : Nat; projects : Map__175655829<Nat, Project__843856319>};
+type UserRole__44914475 = {#admin; #guest; #user};
+type UserRole__84572479 = {#admin; #guest; #user};
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20260903_000000" : (_old : OldActor__426030763) -> NewActor__509629864;
+  "20261120_000000" : (old : OldActor__435162136) -> NewActor__947486200
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__175655829<Principal, UserRole__91647283>
+    };
+  stable attestations :
+    {
+      var root : Node__1010487028<Principal, Attestation__560814043>;
+      var size : Nat__565224867
+    };
+  stable caseFiles :
+    {
+      var root : Node__1010487028<Principal, UserFiles__288248880>;
+      var size : Nat__565224867
+    };
+  stable conversations :
+    {
+      var root : Node__1010487028<Principal, UserChats__746332571>;
+      var size : Nat__565224867
+    };
+  stable drafts :
+    {
+      var root : Node__1010487028<Principal, UserDrafts__523179498>;
+      var size : Nat__565224867
+    };
+  stable modelKeys :
+    {
+      var root : Node__1010487028<Principal, UserKeys__16407388>;
+      var size : Nat__565224867
+    };
+  stable passages :
+    {
+      var root : Node__1010487028<Principal, UserPassages__521185699>;
+      var size : Nat__565224867
+    };
+  stable projects :
+    {
+      var root : Node__1010487028<Principal, UserProjects__1017733963>;
+      var size : Nat__565224867
+    }
+};

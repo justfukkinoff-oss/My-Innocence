@@ -1,0 +1,22 @@
+{
+  "overview": "A U.S.-only pro se workspace for federal habeas corpus work under 28 U.S.C. §2254, with a case-file library, grounded legal drafting, citation checking and DOCX export.",
+  "features": [
+    "Create habeas projects and upload PDF, DOCX and TXT case files",
+    "Automatic indexing of every upload with page and paragraph locators",
+    "Ask questions answered only from your own case files, with expandable source passages",
+    "Draft petitions, memoranda, motions, replies and exhaustion notices with autosave and version history",
+    "Citation checker that marks each citation verified, unverified or malformed",
+    "Grounding check that flags claims with no supporting source",
+    "Export any draft to DOCX with caption, numbered paragraphs and a source appendix",
+    "Bring your own model key, stored securely and shown only by its last four characters"
+  ],
+  "category": "legal-research",
+  "tags": [
+    "legal",
+    "habeas-corpus",
+    "document-drafting",
+    "case-files",
+    "research"
+  ],
+  "last_updated": "2026-11-20T13:19:20.822Z"
+}
